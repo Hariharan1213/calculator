@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body
+        {
+            background-color: rgb(69, 69, 242);
+        }
+        .container
+        {
+            border-left: 10px solid white;
+            border-radius: 4px;
+            font-size: 70px;
+            color: white;
+            margin-top: 200px;
+            margin-left: 200px;
+        }
+        .gbox
+        {
+            position: relative;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 230px;
+            margin-left: 350px;
+            background-color: aliceblue;
+        }
+        .game
+        {
+            display: flex;
+            flex-wrap: wrap;
+            height: 255px;
+            width: 250px;
+            gap: 10px; 
+            transform-style: preserve-3d;
+        }
+        .item
+        {
+            position: relative;
+            display: flex;
+            background-color: grey;
+            height: 55px;
+            width: 55px;
+            justify-content: center;
+            align-items: center;
+            transition: 0.25s;
+            transform: rotateY(180deg);
+        }
+        .item::after
+        {
+            background-color: rgb(69, 156, 69);
+            transition: 0.25s;
+            transform: rotateY(0deg);
+        }
+        .reset
+        {
+            margin-top: 25px;
+            height: 35px;
+            width: 100px;
+            margin-left: 75px;
+            cursor: pointer;
+            color: white;
+            background-color: rgb(69, 69, 242);
+            border: none;
+            font-size: 20px;
+        }
+        .reset:focus
+        {
+            background-color: white;
+            color: rgb(69, 69, 242);
+        }
+    </style>
+</html>
+<body>
+<div class="tot" style="display: flex;">
+    <div class="container"><i>
+<pre>
+    Memory
+    Card Game
+    Javascript</pre></i>
+    </div>
+    <div class="gbox">
+        <div class="game"></div>
+        <button class="reset" onclick="window.location.reload()">Reset</button>
+    </div>
+</div>
+<script>
+    const num = ["A","A","B","B","C","C","D","D","E","E","F","F","G","G","H","H"];
+    var shuf_num = num.sort(() => Math.random() - 0.5);
+    var b = 0;
+    for(var i =0;i<num.length;i++)
+    {
+        let box = document.createElement('div')
+        box.className = 'item';
+        box.innerHTML = shuf_num[i];
+        box.onclick = function()
+        {
+            box.style.transform = 'rotate(360deg)'
+
+        }
+        document.querySelector('.game').appendChild(box);
+    }
+</script>
+</body>

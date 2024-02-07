@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body
+      {
+        height: 829px;
+        background-image: linear-gradient(to bottom right, pink, lightblue,pink);
+      }
+      .bod
+      {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border: 2px solid white;
+        background-color: white;
+        padding: 15px;
+      }
+      .phno input
+      {
+        border-color: lightblue;
+        width: 20px;
+        font-size: 20px;
+        cursor: none;
+        pointer-events: none;
+        text-align: center;
+        position: relative;
+        left: 5%;
+        transform: translate(-5%);
+      }
+      .phno input:focus
+      {
+        border-bottom: 2px solid orange;
+        outline: none;
+      }
+      .phno input:nth-child(1)
+      {
+        cursor: pointer;
+        pointer-events: all;
+      }
+      button
+      {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        height: 30px;
+        width: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bod">
+    <h3 style="font-size: 30px; margin-top: 0px;">Enter your mobile number</h3>
+    <div class="phno" id="inp">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1" id="num">
+    </div><br>
+    <button onclick="submit()">Enter</button>
+    </div>
+    <script>
+      const inpu = document.getElementById("inp");
+      inpu.addEventListener('input',function(e)
+      {
+        const target = e.target;
+        const val = target.value;
+        if(isNaN(val))
+        {
+          target.value = "";
+          return;
+        }
+        if(val != "")
+        {
+          const next = target.nextElementSibling;
+          if(next){next.focus();}
+        }
+      });
+      inpu.addEventListener('keyup',function(e)
+      {
+        const target = e.target;
+        const key = e.key.toLowerCase();
+        if(key == "backspace" || key == "delete")
+        {
+          target.value="";
+          const prev = target.previousElementSibling;
+          if(prev){prev.focus();}
+          return;
+        }
+      });
+      function submit()
+      {
+        let x = document.getElementById("num").value;
+        if(x)
+        {
+          window.location.href="otp1.html"
+        }
+        else
+        {
+          window.alert("Enter full Mobile Number")
+        }
+      }
+    </script>
+  </body>
+</html>

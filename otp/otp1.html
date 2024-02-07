@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+      body
+      {
+        height: 829px;
+        background-image: linear-gradient(to bottom right, pink, lightblue,pink);
+      }
+      .bod
+      {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border: 2px solid white;
+        border-radius: 5px;
+        border-width: 30px;
+        background-color: white;
+        padding: 20px;
+      }
+      .phno input
+      {
+        height: 30px;
+        width: 25px;
+        font-size: 20px;
+        cursor: none;
+        pointer-events: none;
+        text-align: center;
+        position: relative;
+        left: 1%;
+        transform: translate(-1%);
+        border-color: lightblue;
+      }
+      .phno input:focus
+      {
+        border-bottom: 2px solid orange;
+        outline: none;
+      }
+      .phno input:nth-child(1)
+      {
+        cursor: pointer;
+        pointer-events: all;
+      }
+      button
+      {
+        position: relative;
+        margin-left: 3px;
+        height: 30px;
+        width: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bod">
+    <h3 style="font-size: 30px;margin-left: 20px;">Enter OTP</h3><br><br>
+    <div class="phno" id="inp">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1">
+      <input type="text" maxlength="1" minlength="1" id="num">
+    </div><br>
+    <button onclick="otpnu()">Get OTP</button>
+    <button type="button" onclick="submit()">Submit</button>
+</div>
+    <script>
+        function otpnu()
+        {
+            var num = '0123456789';
+            let otp = '';
+            for(let i=0;i<6;i++)
+            {
+                otp += num[Math.floor(Math.random()*10)];
+            }
+            window.alert(otp)
+        }
+      const inpu = document.getElementById("inp");
+      inpu.addEventListener('input',function(e)
+      {
+        const target = e.target;
+        const val = target.value;
+        if(isNaN(val))
+        {
+          target.value = "";
+          return;
+        }
+        if(val != "")
+        {
+          const next = target.nextElementSibling;
+          if(next){next.focus();}
+        }
+      });
+      inpu.addEventListener('keyup',function(e)
+      {
+        const target = e.target;
+        const key = e.key.toLowerCase();
+        if(key == "backspace" || key == "delete")
+        {
+          target.value="";
+          const prev = target.previousElementSibling;
+          if(prev){prev.focus();}
+          return;
+        }
+      });
+      function submit()
+      {
+        let x = document.getElementById("num").value;
+        if(x)
+        {
+          window.location.href = "otp2.html"
+        }
+        else
+        {
+          window.alert("ENTER ALL OTP NUMBER")
+        }
+      }
+    </script>
